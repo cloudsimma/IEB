@@ -1,0 +1,13 @@
+GetMember = zoho.crm.getRecordById("Accounts",MemberID);
+notes_map = Map();
+blank_line = "\n";
+content1 = "Paused Requested on: " + zoho.currenttime.toString("dd-MMM-yyyy hh:mm:ss","GMT-06:00") + " by : " + zoho.loginuser;
+content2 = GetMember.get("Comments");
+content = content1 + blank_line + content2;
+info content;
+notes_map.put("Note_Title","Membership Status - Paused Member");
+notes_map.put("Note_Content",content);
+notes_map.put("Parent_Id",MemberID);
+notes_map.put("se_module","Accounts");
+notecreate = zoho.crm.createRecord("Notes",notes_map);
+info notecreate;
