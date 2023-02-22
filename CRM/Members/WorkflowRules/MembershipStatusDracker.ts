@@ -1,0 +1,11 @@
+GetMember = zoho.crm.getRecordById("Accounts",member_ID);
+dataMap = Map();
+dataMap.put("Member_Name",GetMember.get("Zoho_Creator_ID"));
+dataMap.put("Member_Name1",GetMember.get("Account_Name"));
+dataMap.put("Status",GetMember.get("Membership_Status"));
+dataMap.put("Membership_Level",GetMember.get("Membership_Level_2"));
+dataMap.put("Date_Time",zoho.currenttime);
+dataMap.put("Notes",GetMember.get("Membership_Status") + " Requested on: " + zoho.currenttime.toString("MM/dd/yyyy hh:mm:ss","GMT-04:00") + " by : " + zoho.loginuser);
+otherprams = Map();
+resp = zoho.creator.createRecord("inspectorempirebuilder","ieb","Member_Status_Tracking",dataMap,otherprams,"zohocreator");
+info resp;
